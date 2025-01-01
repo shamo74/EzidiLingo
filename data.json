@@ -1,0 +1,22 @@
+[
+  {
+    "arabic": "باشي",
+    "dutch": "Hallo",
+    "audio": "https://www.lingohut.com/audio/arabic/Hello.mp3"
+  },
+  {
+    "arabic": "سبا طا ابخير",
+    "dutch": "Goedemorgen",
+    "audio": "https://www.lingohut.com/audio/arabic/GoodMorning.mp3"
+  },
+  {
+    "arabic": "ايفارا طا ابخير",
+    "dutch": "Goedenavond",
+    "audio": "https://www.lingohut.com/audio/arabic/GoodEvening.mp3"
+  },
+  {
+    "arabic": "نافي طا جيا؟",
+    "dutch": "Hoe heet je?",
+    "audio": "https://www.lingohut.com/audio/arabic/WhatsYourName.mp3"
+  }
+]

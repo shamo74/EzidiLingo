@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تعلم اللغة</title>
+    <style>
+    	     @font-face {
+            font-family: 'CustomArabicFont';
+            src: url('CustomArabicFont.ttf') format('truetype');
+        }
+
+        * {
+            font-family: 'CustomArabicFont', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #5e2b97, #4C00D8);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        header {
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: px;
+            text-align: center;
+            width: 100%;
+        }
+        header h1 {
+            font-size: 24px;
+            color: #5e2b97;
+            margin: 0;
+        }
+        .card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 400px;
+            margin: 20px auto;
+            overflow: hidden;
+            position: relative;
+            animation: fadeIn 0.5s;
+        }
+        .translation {
+            font-size: 28px;
+            font-weight: bold;
+            color: #5e2b97;
+        }
+        .label {
+            font-size: 16px;
+            color: #777;
+            margin-top: 10px;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .btn {
+            background: white;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            background: #B2A0FF;
+        }
+        @keyframes fadeIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>learn dutch</h1>
+    </header>
+    <div class="card">
+        <div>
+            <p id="arabic-word" class="translation">...</p>
+            <p class="label">ايزيدي</p>
+        </div>
+        <div>
+            <p id="dutch-word" class="translation">...</p>
+            <p class="label">هولندي</p>
+        </div>
+    </div>
+    <div class="btn-container">
+        <button class="btn" onclick="prevWord()">السابق</button>
+        <button class="btn" onclick="playAudio()">🔊 تشغيل الصوت</button>
+        <button class="btn" onclick="nextWord()">التالي</button>
+    </div>
+
+    <script>
+        let words = [];
+        let currentIndex = 0;
+
+        // تحميل الكلمات من ملف JSON
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                words = data;
+                updateWord();
+            })
+            .catch(error => console.error('Error loading JSON:', error));
+
+        function updateWord() {
+            const arabicElement = document.getElementById('arabic-word');
+            const dutchElement = document.getElementById('dutch-word');
+
+            arabicElement.textContent = words[currentIndex].arabic;
+            dutchElement.textContent = words[currentIndex].dutch;
+        }
+
+        function playAudio() {
+            if (words.length > 0) {
+                const audio = new Audio(words[currentIndex].audio);
+                audio.play();
+            }
+        }
+
+        function nextWord() {
+            if (words.length > 0) {
+                currentIndex = (currentIndex + 1) % words.length;
+                updateWord();
+            }
+        }
+
+        function prevWord() {
+            if (words.length > 0) {
+                currentIndex = (currentIndex - 1 + words.length) % words.length;
+                updateWord();
+            }
+        }
+    </script>
+</body>
+</html>
