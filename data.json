@@ -2,7 +2,7 @@
   {
     "arabic": "باشي",
     "dutch": "Hallo",
-    "audio": "https://www.lingohut.com/audio/arabic/Hello.mp3"
+    "audio": "https://ws.voxygen.fr/ttsdemo/api/speak?text=Hello"
   },
   {
     "arabic": "سبا طا ابخير",
